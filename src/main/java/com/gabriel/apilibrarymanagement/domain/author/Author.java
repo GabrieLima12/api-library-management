@@ -1,5 +1,6 @@
 package com.gabriel.apilibrarymanagement.domain.author;
 
+import com.gabriel.apilibrarymanagement.domain.book.Book;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "AUTHOR")
 @Entity
@@ -23,6 +26,9 @@ public class Author {
     private String name;
     private LocalDate birthDate;
     private String nationality;
+
+    @ManyToMany(mappedBy = "authors")
+    private List<Book> books = new ArrayList<>();
 
     public Author(AuthorRegistration authorRegistration) {
         this.name = authorRegistration.name();
