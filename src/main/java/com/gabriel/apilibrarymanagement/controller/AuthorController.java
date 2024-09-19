@@ -12,11 +12,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/authors")
-public class AuthController {
+public class AuthorController {
 
     private final AuthorService authorService;
 
-    public AuthController(AuthorService authorService) {
+    public AuthorController(AuthorService authorService) {
         this.authorService = authorService;
     }
 
@@ -27,7 +27,7 @@ public class AuthController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AuthorDTO> getBookById(@PathVariable Integer id) {
+    public ResponseEntity<AuthorDTO> getAuthorById(@PathVariable Integer id) {
         AuthorDTO authorDTO = authorService.getAuthorById(id);
         if (authorDTO != null) {
             return ResponseEntity.ok(authorDTO);
