@@ -1,4 +1,4 @@
-package com.gabriel.api_library_management;
+package com.gabriel.apilibrarymanagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
