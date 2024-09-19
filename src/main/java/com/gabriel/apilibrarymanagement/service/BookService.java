@@ -87,13 +87,16 @@ public class BookService {
 
     public BookDTO updateBook(Integer id, BookUpdate bookUpdate) {
         try {
-            Optional<Book> bookOptional = bookRepository.findByIdAndIsDeletedFalse(id);
+            Optional<Book> bookOptional = bookRepository.findById(id);
             if (bookOptional.isPresent()) {
                 Book book = bookOptional.get();
                 Optional.ofNullable(bookUpdate.title()).ifPresent(book::setTitle);
                 Optional.ofNullable(bookUpdate.description()).ifPresent(book::setDescription);
                 Optional.ofNullable(bookUpdate.publishDate()).ifPresent(book::setPublishDate);
                 Optional.ofNullable(bookUpdate.availability()).ifPresent(book::setAvailabilityEnum);
+                if (book.isDeleted()) {
+                    book.setDeleted(false);
+                }
                 book = bookRepository.save(book);
                 return BookDTO.builder()
                         .id(book.getId())
