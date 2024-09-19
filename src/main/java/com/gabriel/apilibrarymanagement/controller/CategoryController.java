@@ -21,13 +21,13 @@ public class CategoryController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<CategoryDTO>> getAuthors() {
+    public ResponseEntity<List<CategoryDTO>> getCategories() {
         List<CategoryDTO> category = categoryService.getCategories();
         return ResponseEntity.ok(category);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryDTO> getBookById(@PathVariable Integer id) {
+    public ResponseEntity<CategoryDTO> getCategoryById(@PathVariable Integer id) {
         CategoryDTO category = categoryService.getCategoryById(id);
         if (category != null) {
             return ResponseEntity.ok(category);
@@ -36,13 +36,13 @@ public class CategoryController {
     }
 
     @PostMapping()
-    public ResponseEntity<CategoryDTO> authorRegistration(@RequestBody CategoryRegistration categoryRegistration) {
+    public ResponseEntity<CategoryDTO> categoryRegistration(@RequestBody CategoryRegistration categoryRegistration) {
         CategoryDTO category = categoryService.categoryRegister(categoryRegistration);
         return new ResponseEntity<>(category, HttpStatus.CREATED);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<CategoryDTO> updateAuthor(
+    public ResponseEntity<CategoryDTO> updateCategory(
             @PathVariable Integer id,
             @RequestBody CategoryUpdate categoryUpdate) {
         CategoryDTO category = categoryService.updateCategory(id, categoryUpdate);
@@ -50,7 +50,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteAuthor(@PathVariable Integer id) {
+    public ResponseEntity<Void> deleteCategory(@PathVariable Integer id) {
         categoryService.deleteCategory(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
